@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Про вебресурс — Основи охорони праці</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        .game-section {
+            margin-top: 40px;
+            padding: 25px;
+            background: #1e293b;
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+        .game-btn {
+            background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%);
+            color: #fff;
+            border: none;
+            padding: 12px 24px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 15px rgba(2, 132, 199, 0.4);
+        }
+        .game-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(56, 189, 248, 0.6);
+        }
+        #game-container {
+            display: none;
+            margin-top: 20px;
+            background: #0f172a;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #334155;
+        }
+        canvas {
+            background: #020617;
+            border: 2px solid #38bdf8;
+            display: block;
+            margin: 0 auto;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.15);
+            outline: none;
+        }
+        .game-status {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: #38bdf8;
+            font-weight: 600;
+        }
+        .manual-block {
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 15px;
+            border: 1px solid #e2e8f0;
+        }
+        .manual-block h3 {
+            color: #0284c7;
+            margin-top: 20px;
+            font-size: 1.15rem;
+        }
+        .manual-block ul {
+            padding-left: 20px;
+        }
+        .manual-block li {
+            margin-bottom: 6px;
+        }
+    </style>
+</head>
+<body>
+
+<header style="padding: 25px 20px;">
+    <div class="logo" style="font-size: 2rem;">Про <span>вебресурс</span></div>
+    <p>Паспорт електронного навчально-методичного комплексу та керівництво користувача</p>
+</header>
+
+<div class="main-layout">
+    <div class="sidebar" style="width: 320px;">
+        <a href="../index.html" class="back-link"><i class="fa-solid fa-arrow-left"></i> На головну</a>
+        <div class="sidebar-title">Специфікація</div>
+        <p style="color: #94a3b8; font-size: 0.9rem; line-height: 1.5; margin-bottom: 20px;">
+            Даний вебресурс є випускною кваліфікаційною роботою та захищається на засіданні державної кваліфікаційної комісії.
+        </p>
+        <div class="sidebar-title">Рік розробки</div>
+        <p style="color: #38bdf8; font-weight: 600; font-size: 1.1rem;">2026 рік</p>
+    </div>
+
+    <div class="content-viewer" style="background: #ffffff; padding: 40px; overflow-y: auto;">
+        <div style="max-width: 800px; margin: 0 auto; font-family: sans-serif; color: #0f172a;">
+
+            <h2 style="color: #0284c7; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px; margin-top: 0;">
+                <i class="fa-solid fa-address-card"></i> Відомості про автора та керівництво
+            </h2>
+
+            <table style="width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 1.05rem;">
+                <tr style="border-bottom: 1px solid #f1f5f9;">
+                    <td style="padding: 12px 0; font-weight: 600; color: #475569; width: 35%;">Тема роботи:</td>
+                    <td style="padding: 12px 0; color: #0f172a; font-weight: 500;">«Розробка і створення електронного підручника у вигляді вебсторінок з освітнього компонента «Основи охорони праці» для спеціальності Гірництво»</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #f1f5f9;">
+                    <td style="padding: 12px 0; font-weight: 600; color: #475569;">Виконавець:</td>
+                    <td style="padding: 12px 0; color: #0f172a; font-weight: 500;">здобувач освіти групи КІ-1-22 Цуркін Артем Михайлович</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #f1f5f9;">
+                    <td style="padding: 12px 0; font-weight: 600; color: #475569;">Спеціальність:</td>
+                    <td style="padding: 12px 0; color: #0f172a; font-weight: 500;">«Гірництво»</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #f1f5f9;">
+                    <td style="padding: 12px 0; font-weight: 600; color: #475569;">Керівник:</td>
+                    <td style="padding: 12px 0; color: #0f172a; font-weight: 500;">Демченко О.В., викладач-методист вищої категорії</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #f1f5f9;">
+                    <td style="padding: 12px 0; font-weight: 600; color: #475569;">Автор матеріалу:</td>
+                    <td style="padding: 12px 0; color: #0f172a;">викладач Дмитрієва О.А.</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #f1f5f9;">
+                    <td style="padding: 12px 0; font-weight: 600; color: #475569;">Навчальний заклад:</td>
+                    <td style="padding: 12px 0; color: #0f172a; line-height: 1.5;">
+                        Павлоградський фаховий коледж Державного вищого навчального закладу "Національний гірничий університет"
+                    </td>
+                </tr>
+            </table>
+
+            <h2 style="color: #0284c7; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px; margin-top: 40px;">
+                <i class="fa-solid fa-book"></i> Керівництво користувача програмного продукту
+            </h2>
+
+            <div class="manual-block" style="color: #334155; line-height: 1.6; font-size: 1rem;">
+                <p>Це керівництво користувача надає детальну інформацію про використання електронного підручника «Програмне забезпечення», розробленого як інтелектуальна система дистанційного навчання у вигляді веб-сторінки.</p>
+
+                <h3>1. Загальний огляд сайту:</h3>
+                <p>Електронний підручник є веб-сайтом, доступним через any modern web-browser. Він містить навчальні матеріали з дисципліни «Програмне забезпечення», розділені за категоріями: «Лекції», «Лабораторні роботи», «Семінари», «Практичні заняття», «Самостійні роботи». Також на сайті доступні інструменти для перевірки знань: «Тести» та гра «Вгадай слово». Сайт адаптований для відображення на різних пристроях та підтримує світлу та темну теми.</p>
+
+                <h3>2. Навігація по сайту:</h3>
+                <ul>
+                    <li><strong>Верхній банер:</strong> На кожній сторінці у верхній частині знаходиться анімований заголовок.</li>
+                    <li><strong>Навігаційне меню:</strong> Під банером розташоване головне меню: «Головна», «Програма дисципліни», «Лекції», «Лабораторні роботи», «Семінари», «Практичні заняття», «Самостійні роботи», а також «Перевірка знань» (Тести та Вгадай слово).</li>
+                    <li><strong>Мобільне меню:</strong> На малих екранах меню приховане під іконкою "☰" у правому верхньому куті.</li>
+                </ul>
+
+                <h3>3. Зміна теми оформлення:</h3>
+                <p>У правому upper-right corner знаходиться перемикач теми (світла / темна). Налаштування автоматично зберігаються для наступних візитів.</p>
+
+                <h3>4. Перегляд навчальних матеріалів (PDF):</h3>
+                <p>Кожен пункт у розділах занять є посиланням на PDF-документ, який відкривається у вбудованому переглядачі прямо на сайті. Для закриття переглядача натиснуть кнопку "×".</p>
+
+                <h3>5. Використання розділу «Тести»:</h3>
+                <p>Оберіть потрібний розділ тестів з випадаючого списку «Оберіть розділ:», виберіть тему та натисніть «Розпочати тест». Результат відобразиться автоматично після завершення.</p>
+
+                <h3>6. Гра «Вгадай слово»:</h3>
+                <p>Введіть літеру у поле «буква» та натисніть «Вгадати» або Enter. Правильна літера відкриє маску слова, неправильна — забере одну спробу.</p>
+
+                <h3>7. Усунення проблем:</h3>
+                <ul>
+                    <li><strong>Відображення:</strong> Оновіть сторінку через Ctrl+F5 або очистіть кеш.</li>
+                    <li><strong>Проблеми з PDF:</strong> Перевірте стабільність інтернет-з'єднання.</li>
+                    <li><strong>Функціонал ігор:</strong> Переконайтеся, що у браузері увімкнено підтримку JavaScript.</li>
+                </ul>
+            </div>
+
+            <h2 style="color: #0284c7; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px; margin-top: 40px;">
+                <i class="fa-solid fa-code"></i> Технічні характеристики ресурсу
+            </h2>
+            <ul style="line-height: 1.8; color: #475569; padding-left: 20px; font-size: 1rem;">
+                <li><strong>HTML5 Canvas</strong> — рендеринг інтерактивних елементів та графіки модулів розвантаження.</li>
+                <li><strong>CSS3</strong> — гнучка блочна верстка (Flexbox) та адаптивний дизайн компонентів.</li>
+                <li><strong>JavaScript (ES6)</strong> — обробка ігрової логіки, керування станом об'єктів та динамічне оновлення DOM.</li>
+            </ul>
+
+            <div class="game-section">
+                <h3 style="color: #fff; margin-bottom: 10px;"><i class="fa-solid fa-brain"></i> Модуль психоемоційного розвантаження</h3>
+                <p style="color: #94a3b8; font-size: 0.95rem; margin-bottom: 20px; line-height: 1.5;">
+                    Інтерактивний тренажер для профілактики перевтоми гірничих інженерів. <br>
+                    <strong>Керування:</strong> Натисніть кнопку нижче, а потім використовуйте <strong>стрілочки на клавіатурі</strong>, щоб почати рух. <br>
+                    Збирайте засоби захисту (<strong>+</strong>) та уникайте небезпечних виробничих факторів (<strong>x</strong>).
+                </p>
+
+                <button class="game-btn" id="start-btn" onclick="toggleGame()"><i class="fa-solid fa-play"></i> Відкрити тренажер</button>
+
+                <div id="game-container">
+                    <div class="game-status" id="score-display">Рівень безпеки: 0</div>
+                    <canvas id="gameCanvas" width="400" height="400" tabindex="0"></canvas>
+                    <p id="game-tip" style="color: #38bdf8; font-size: 0.9rem; margin-top: 10px; font-weight: 600;">Натисніть будь-яку стрілочку, щоб почати рух!</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    const canvas = document.getElementById("gameCanvas");
+    const ctx = canvas.getContext("2d");
+    const scoreDisplay = document.getElementById("score-display");
+    const gameTip = document.getElementById("game-tip");
+
+    const gridSize = 20;
+    const tileCount = canvas.width / gridSize;
+
+    let snake = [{x: 10, y: 10}];
+    let direction = {x: 0, y: 0};
+    let item = {x: 5, y: 5};
+    let obstacles = [];
+    let score = 0;
+    let gameInterval = null;
+    let isGameOver = false;
+    let gameStarted = false;
+
+    let mouthTicks = 0;
+
+    function toggleGame() {
+        const container = document.getElementById("game-container");
+        const btn = document.getElementById("start-btn");
+
+        if (container.style.display === "block") {
+            container.style.display = "none";
+            btn.innerHTML = '<i class="fa-solid fa-play"></i> Відкрити тренажер';
+            stopGameLoop();
+        } else {
+            container.style.display = "block";
+            btn.innerHTML = '<i class="fa-solid fa-xmark"></i> Закрити тренажер';
+            resetGame();
+            startGameLoop();
+
+            setTimeout(() => {
+                canvas.focus();
+            }, 50);
+        }
+    }
+
+    function startGameLoop() {
+        if(!gameInterval) {
+            gameInterval = setInterval(updateGame, 190);
+        }
+    }
+
+    function stopGameLoop() {
+        if(gameInterval) {
+            clearInterval(gameInterval);
+            gameInterval = null;
+        }
+    }
+
+    const handleKeyDown = function(e) {
+        if(["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "Space"].includes(e.code) || ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(e.key)) {
+            e.preventDefault();
+
+            if(isGameOver) {
+                resetGame();
+                return;
+            }
+
+            const key = e.key;
+            if (key === "ArrowUp" && direction.y !== 1)    { direction = {x: 0, y: -1};  gameStarted = true; }
+            if (key === "ArrowDown" && direction.y !== -1)  { direction = {x: 0, y: 1};   gameStarted = true; }
+            if (key === "ArrowLeft" && direction.x !== 1)   { direction = {x: -1, y: 0};  gameStarted = true; }
+            if (key === "ArrowRight" && direction.x !== -1) { direction = {x: 1, y: 0};   gameStarted = true; }
+
+            gameTip.style.color = "#64748b";
+            gameTip.innerText = "Керуйте стрілочками на клавіатурі";
+        }
+    };
+
+    window.addEventListener("keydown", handleKeyDown, { passive: false });
+    canvas.addEventListener("keydown", handleKeyDown, { passive: false });
+
+    function updateGame() {
+        if (isGameOver || !gameStarted) {
+            draw();
+            return;
+        }
+
+        mouthTicks++;
+
+        const head = {x: snake[0].x + direction.x, y: snake[0].y + direction.y};
+
+        if (head.x < 0 || head.x >= tileCount || head.y < 0 || head.y >= tileCount || checkCollision(head, snake) || checkCollision(head, obstacles)) {
+            isGameOver = true;
+            gameTip.style.color = "#ef4444";
+            gameTip.innerText = "🚨 Порушено ТБ! Натисніть будь-яку стрілочку для перезапуску.";
+            draw();
+            return;
+        }
+
+        snake.unshift(head);
+
+        if (head.x === item.x && head.y === item.y) {
+            score += 10;
+            scoreDisplay.innerText = "Рівень безпеки: " + score;
+            generateItem();
+        } else {
+            snake.pop();
+        }
+
+        draw();
+    }
+
+    function checkCollision(pos, array) {
+        return array.some(segment => segment.x === pos.x && segment.y === pos.y);
+    }
+
+    function generateItem() {
+        if (score > 0 && obstacles.length < 12) {
+            obstacles.push({
+                x: Math.floor(Math.random() * tileCount),
+                y: Math.floor(Math.random() * tileCount)
+            });
+        }
+        item.x = Math.floor(Math.random() * tileCount);
+        item.y = Math.floor(Math.random() * tileCount);
+
+        if(checkCollision(item, obstacles) || checkCollision(item, snake)) {
+            generateItem();
+        }
+    }
+
+    function resetGame() {
+        snake = [{x: 10, y: 10}];
+        direction = {x: 0, y: 0};
+        obstacles = [];
+        score = 0;
+        isGameOver = false;
+        gameStarted = false;
+        mouthTicks = 0;
+        scoreDisplay.innerText = "Рівень безпеки: 0";
+        gameTip.style.color = "#38bdf8";
+        gameTip.innerText = "Натисніть будь-яку стрілочку, що б почати рух!";
+        generateItem();
+        draw();
+    }
+
+    function draw() {
+        ctx.fillStyle = "#020617";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        ctx.strokeStyle = "#1e293b";
+        ctx.lineWidth = 0.5;
+        for(let i=0; i<tileCount; i++) {
+            ctx.beginPath(); ctx.moveTo(i*gridSize, 0); ctx.lineTo(i*gridSize, canvas.height); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(0, i*gridSize); ctx.lineTo(canvas.width, i*gridSize); ctx.stroke();
+        }
+
+        snake.forEach((segment, index) => {
+            const centerX = segment.x * gridSize + gridSize / 2;
+            const centerY = segment.y * gridSize + gridSize / 2;
+            const radius = gridSize / 2 - 1;
+
+            if (index === 0) {
+                ctx.fillStyle = isGameOver ? "#475569" : "#22c55e";
+
+                let startAngle = 0;
+                let endAngle = 2 * Math.PI;
+                const isMouthOpen = (mouthTicks % 2 === 0) && gameStarted && !isGameOver;
+
+                if (isMouthOpen) {
+                    if (direction.x === 1) {
+                        startAngle = 0.2 * Math.PI; endAngle = 1.8 * Math.PI;
+                    } else if (direction.x === -1) {
+                        startAngle = 1.2 * Math.PI; endAngle = 0.8 * Math.PI;
+                    } else if (direction.y === 1) {
+                        startAngle = 0.7 * Math.PI; endAngle = 0.3 * Math.PI;
+                    } else if (direction.y === -1) {
+                        startAngle = 1.7 * Math.PI; endAngle = 1.3 * Math.PI;
+                    }
+                }
+
+                ctx.beginPath();
+                if (isMouthOpen && (direction.x !== 0 || direction.y !== 0)) {
+                    ctx.moveTo(centerX, centerY);
+                }
+                ctx.arc(centerX, centerY, radius, startAngle, endAngle);
+                ctx.closePath();
+                ctx.fill();
+
+                if (!isGameOver) {
+                    ctx.fillStyle = "#000000";
+                    let eyeX = centerX;
+                    let eyeY = centerY;
+
+                    if (direction.x === 1 || direction.y === 0) { eyeX += 1; eyeY -= 4; }
+                    else if (direction.x === -1) { eyeX -= 1; eyeY -= 4; }
+                    else if (direction.y === 1) { eyeX += 4; eyeY += 1; }
+                    else if (direction.y === -1) { eyeX += 4; eyeY -= 1; }
+
+                    ctx.beginPath();
+                    ctx.arc(eyeX, eyeY, 2, 0, 2 * Math.PI);
+                    ctx.fill();
+                }
+            } else {
+                ctx.fillStyle = isGameOver ? "#64748b" : "#4ade80";
+                ctx.beginPath();
+                ctx.arc(centerX, centerY, radius - 1, 0, 2 * Math.PI);
+                ctx.fill();
+            }
+        });
+
+        if(!isGameOver) {
+            ctx.fillStyle = "#38bdf8";
+            ctx.font = "bold 18px sans-serif";
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            ctx.fillText("+", item.x * gridSize + gridSize/2, item.y * gridSize + gridSize/2);
+        }
+
+        ctx.fillStyle = "#ef4444";
+        ctx.font = "bold 16px sans-serif";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        obstacles.forEach(obs => {
+            ctx.fillText("x", obs.x * gridSize + gridSize/2, obs.y * gridSize + gridSize/2);
+        });
+    }
+</script>
+</body>
+</html>
